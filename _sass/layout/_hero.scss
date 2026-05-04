@@ -1,0 +1,80 @@
+/* ==========================================================================
+   HERO BANNER
+   Dynamic display area at the top of the page
+   ========================================================================== */
+
+.hero-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--global-bg-color);
+
+  /* Fallback gradient when no content source is loaded */
+  background: linear-gradient(
+    135deg,
+    var(--global-base-color) 0%,
+    var(--global-link-color) 100%
+  );
+
+  /* Canvas, video, img fill the container */
+  canvas,
+  video,
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Video overlay tint */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+}
+
+/* ==========================================================================
+   NON-OVERLAY MODE — hero sits above masthead as a separate section
+   ========================================================================== */
+
+.hero-banner:not(.hero-banner--overlay) {
+  /* No additional positioning needed; sits in normal document flow */
+  border-bottom: 1px solid var(--global-border-color);
+}
+
+/* ==========================================================================
+   OVERLAY MODE — masthead is absolute-positioned on top of hero
+   ========================================================================== */
+
+.hero-banner--overlay {
+  /* Hero fills the top of the viewport, masthead overlays it */
+  margin-top: 0;
+}
+
+/* Masthead overlay styles are set in _masthead.scss via .masthead--overlay class */
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
+@include breakpoint($small) {
+  .hero-banner {
+    /* Mobile: reduce height via the data attribute default handled in JS,
+       CSS fallback: min-height via data attr */
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-banner {
+    /* Replace animated hero with a static gradient */
+    canvas,
+    video {
+      display: none;
+    }
+  }
+}

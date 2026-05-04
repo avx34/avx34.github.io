@@ -42,6 +42,36 @@
       text-decoration: none;
     }
   }
+
+  /* Overlay mode: masthead sits on top of hero banner */
+  .has-hero-overlay & {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+
+    &::after {
+      display: none;
+    }
+
+    .masthead__menu-item {
+      background-color: transparent;
+    }
+
+    /* Fixed when scrolled past hero — controlled by JS via class */
+    &.masthead--scrolled {
+      position: fixed;
+      background: var(--global-bg-color);
+
+      &::after {
+        display: block;
+      }
+
+      .masthead__menu-item {
+        background-color: var(--global-bg-color);
+      }
+    }
+  }
 }
 
 .masthead__menu {

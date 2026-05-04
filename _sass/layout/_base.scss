@@ -22,6 +22,11 @@ body {
     /* when primary navigation is visible, the content in the background won't scroll */
     overflow: hidden;
   }
+
+  /* When hero overlay is active, remove default masthead padding */
+  &.has-hero-overlay {
+    padding-top: 0;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {

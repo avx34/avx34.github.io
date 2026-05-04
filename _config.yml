@@ -98,6 +98,49 @@ words_per_minute         : 160
 future                   : true
 read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
 talkmap_link             : false      #change to true to add link to talkmap on talks page
+
+# Hero Banner - Dynamic display area at the top of the page
+hero:
+  enabled: true              # Enable the hero banner
+  height: "40vh"             # CSS height (e.g. "40vh", "400px")
+  min_height: "250px"        # Minimum height
+  masthead_overlay: true     # true = masthead overlays on hero (transparent), false = masthead sits below hero
+  type: "particles"          # Content source type: "particles" | "video" | "image" | "threejs" | "custom"
+
+  # Particle effect settings (used when type: particles)
+  particles:
+    count: 80                # Number of particles
+    color: "#2f7f93"         # Primary particle color
+    color_secondary: "#52adc8" # Secondary particle color
+    speed: 0.5               # Movement speed multiplier (0.1 - 2.0)
+    connect: true            # Draw connecting lines between nearby particles
+    max_distance: 120        # Maximum distance (px) for connections
+    mouse_interaction: 1.0   # Mouse attraction strength (0 = off, positive = attract, negative = repel)
+    trail_length: 0.3        # Motion trail opacity (0 = no trail, 1 = full trail)
+
+  # Video background settings (used when type: video)
+  video:
+    src: "/files/hero-bg.mp4"
+    poster: "/images/hero-poster.jpg"
+    muted: true
+    loop: true
+    autoplay: true
+    overlay_color: "rgba(0,0,0,0.3)"
+
+  # Static image settings (used when type: image)
+  image:
+    src: "/images/hero-bg.jpg"
+    parallax: true
+
+  # Three.js 3D scene (used when type: threejs)
+  threejs:
+    script: "/assets/js/hero/threejs-scene.js"
+
+  # Custom content (used when type: custom)
+  custom:
+    html: ""
+    script: ""
+
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:

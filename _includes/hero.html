@@ -1,0 +1,44 @@
+{% assign hero = site.hero %}
+{% if hero.enabled %}
+  {% assign hero_height = hero.height | default: "40vh" %}
+  {% assign hero_min_height = hero.min_height | default: "250px" %}
+  {% assign hero_overlay = hero.masthead_overlay | default: true %}
+  {% assign hero_type = hero.type | default: "particles" %}
+
+  <div id="hero-banner"
+       class="hero-banner{% if hero_overlay %} hero-banner--overlay{% endif %}"
+       aria-hidden="true"
+       data-hero-type="{{ hero_type }}"
+       data-hero-height="{{ hero_height }}"
+       data-hero-min-height="{{ hero_min_height }}"
+       {% case hero_type %}
+       {% when "particles" %}
+         data-particles-count="{{ hero.particles.count | default: 80 }}"
+         data-particles-color="{{ hero.particles.color | default: '#2f7f93' }}"
+         data-particles-color-secondary="{{ hero.particles.color_secondary | default: '#52adc8' }}"
+         data-particles-speed="{{ hero.particles.speed | default: 0.5 }}"
+         data-particles-connect="{{ hero.particles.connect | default: true }}"
+         data-particles-max-distance="{{ hero.particles.max_distance | default: 120 }}"
+         data-particles-mouse="{{ hero.particles.mouse_interaction | default: 1.0 }}"
+         data-particles-trail="{{ hero.particles.trail_length | default: 0.3 }}"
+       {% when "video" %}
+         data-video-src="{{ hero.video.src }}"
+         data-video-poster="{{ hero.video.poster }}"
+         data-video-muted="{{ hero.video.muted }}"
+         data-video-loop="{{ hero.video.loop }}"
+         data-video-autoplay="{{ hero.video.autoplay }}"
+         data-video-overlay-color="{{ hero.video.overlay_color }}"
+       {% when "image" %}
+         data-image-src="{{ hero.image.src }}"
+         data-image-parallax="{{ hero.image.parallax }}"
+       {% when "threejs" %}
+         data-threejs-script="{{ hero.threejs.script }}"
+       {% when "custom" %}
+         data-custom-html="{{ hero.custom.html | escape }}"
+         data-custom-script="{{ hero.custom.script | escape }}"
+       {% endcase %}>
+       {% if hero_overlay == false %}
+         <!-- Non-overlay: hero sits above masthead as a separate section -->
+       {% endif %}
+  </div>
+{% endif %}

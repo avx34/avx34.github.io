@@ -11,9 +11,14 @@ layout: compress
     {% include head/custom.html %}
   </head>
 
-  <body>
+  <body{% if site.hero.enabled and site.hero.masthead_overlay %} class="has-hero-overlay"{% endif %}>
 
     {% include browser-upgrade.html %}
+
+    {% if site.hero.enabled %}
+      {% include hero.html %}
+    {% endif %}
+
     {% include masthead.html %}
 
     {{ content }}
