@@ -7,6 +7,7 @@
 
   <div id="hero-banner"
        class="hero-banner{% if hero_overlay %} hero-banner--overlay{% endif %}"
+       style="height: {{ hero_height }}; min-height: {{ hero_min_height }};"
        aria-hidden="true"
        data-hero-type="{{ hero_type }}"
        data-hero-height="{{ hero_height }}"
