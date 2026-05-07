@@ -43,7 +43,31 @@
        {% endif %}
   </div>
 
+  <script>
+    // DIAGNOSTIC: Verify hero-banner is in DOM before loading hero JS
+    (function() {
+      var el = document.getElementById('hero-banner');
+      console.log('[HERO-DIAG] hero-banner found:', !!el);
+      if (el) {
+        var rect = el.getBoundingClientRect();
+        console.log('[HERO-DIAG] dimensions:', rect.width + 'x' + rect.height);
+        var cs = getComputedStyle(el);
+        console.log('[HERO-DIAG] computed height:', cs.height);
+        console.log('[HERO-DIAG] computed background:', cs.background);
+        console.log('[HERO-DIAG] computed backgroundColor:', cs.backgroundColor);
+      }
+    })();
+  </script>
   <script src="{{ '/assets/js/hero/particles.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/hero/index.js' | relative_url }}"></script>
+  <script>
+    // DIAGNOSTIC: Check state after hero JS loaded
+    (function() {
+      var el = document.getElementById('hero-banner');
+      console.log('[HERO-DIAG] after JS - hero has canvas:', !!el.querySelector('canvas'));
+      console.log('[HERO-DIAG] after JS - hero children count:', el.children.length);
+      console.log('[HERO-DIAG] after JS - Particles global:', typeof Particles);
+    })();
+  </script>
 
 {% endif %}

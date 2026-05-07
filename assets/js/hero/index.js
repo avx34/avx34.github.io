@@ -5,17 +5,21 @@
    ========================================================================== */
 
 (function () {
+  console.log('[HERO-DIAG] index.js IIFE starting...');
   const heroEl = document.getElementById("hero-banner");
+  console.log('[HERO-DIAG] heroEl found:', !!heroEl);
   if (!heroEl) return;
 
   const type = heroEl.dataset.heroType || "particles";
+  console.log('[HERO-DIAG] hero type:', type);
 
   // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
+  console.log('[HERO-DIAG] prefersReducedMotion:', prefersReducedMotion);
   if (prefersReducedMotion) {
-    // Keep the static gradient background, don't load animation
+    console.log('[HERO-DIAG] Aborting due to reduced motion preference');
     return;
   }
 
@@ -24,6 +28,7 @@
   const minHeight = heroEl.dataset.heroMinHeight || "250px";
   heroEl.style.height = height;
   heroEl.style.minHeight = minHeight;
+  console.log('[HERO-DIAG] Height set:', height, 'minHeight:', minHeight);
 
   // Dispatch to the appropriate content source loader
   switch (type) {
@@ -56,10 +61,13 @@
    ======================================================================== */
 
 function loadParticles(heroEl) {
+  console.log('[HERO-DIAG] loadParticles called, Particles type:', typeof Particles);
   if (typeof Particles === "function") {
+    console.log('[HERO-DIAG] Creating Particles instance...');
     new Particles(heroEl);
+    console.log('[HERO-DIAG] Particles instance created');
   } else {
-    console.warn("Hero: Particles module not loaded. Include particles.js before hero/index.js.");
+    console.warn("[HERO-DIAG] Particles module not loaded. Include particles.js before hero/index.js.");
   }
 }
 
