@@ -18,12 +18,9 @@
 var Particles = (function () {
   "use strict";
 
-  console.log('[HERO-DIAG] Particles module loading...');
-
   var SPATIAL_CELL_SIZE = 80; // grid cell size for spatial hash
 
   function Particles(container) {
-    console.log('[HERO-DIAG] Particles constructor called, container:', container.id);
     this.container = container;
     this.canvas = null;
     this.ctx = null;
@@ -86,9 +83,7 @@ var Particles = (function () {
     this.canvas.style.height = "100%";
     this.container.appendChild(this.canvas);
     this.ctx = this.canvas.getContext("2d");
-    console.log('[HERO-DIAG] Canvas created, ctx:', !!this.ctx, ', getContext("2d"):', this.ctx);
     this._resize();
-    console.log('[HERO-DIAG] After resize - canvas dims:', this.canvas.width + 'x' + this.canvas.height);
   };
 
   Particles.prototype._resize = function () {
@@ -215,10 +210,7 @@ var Particles = (function () {
       self._draw();
       self._loop();
     });
-    if (!this._loopLogged) {
-      console.log('[HERO-DIAG] Render loop started, particles:', self.particles.length);
-      this._loopLogged = true;
-    }
+    if (!this._loopLogged) { this._loopLogged = true; }
   };
 
   Particles.prototype._update = function () {

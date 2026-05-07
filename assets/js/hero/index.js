@@ -5,30 +5,16 @@
    ========================================================================== */
 
 (function () {
-  console.log('[HERO-DIAG] index.js IIFE starting...');
-  const heroEl = document.getElementById("hero-banner");
-  console.log('[HERO-DIAG] heroEl found:', !!heroEl);
+  var heroEl = document.getElementById("hero-banner");
   if (!heroEl) return;
 
-  const type = heroEl.dataset.heroType || "particles";
-  console.log('[HERO-DIAG] hero type:', type);
-
-  // Check for reduced motion preference
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-  console.log('[HERO-DIAG] prefersReducedMotion:', prefersReducedMotion);
-  if (prefersReducedMotion) {
-    console.log('[HERO-DIAG] Aborting due to reduced motion preference');
-    return;
-  }
+  var type = heroEl.dataset.heroType || "particles";
 
   // Apply height from data attributes
-  const height = heroEl.dataset.heroHeight || "40vh";
-  const minHeight = heroEl.dataset.heroMinHeight || "250px";
+  var height = heroEl.dataset.heroHeight || "40vh";
+  var minHeight = heroEl.dataset.heroMinHeight || "250px";
   heroEl.style.height = height;
   heroEl.style.minHeight = minHeight;
-  console.log('[HERO-DIAG] Height set:', height, 'minHeight:', minHeight);
 
   // Dispatch to the appropriate content source loader
   switch (type) {
